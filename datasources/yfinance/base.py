@@ -51,3 +51,10 @@ income_statement = get_income_statement(ticker)
 print(income_statement.index)
 print(income_statement.columns)
 print(income_statement.T)
+
+share_count = ticker.get_shares_full(start="2024-01-01", end=None)
+
+df_json = income_statement.to_json()
+
+print(df_json)
+print(share_count)
