@@ -76,6 +76,7 @@ income_statement = get_income_statement(ticker)
 
 db = get_database("alexandria_db")
 income_statement_collection = db["income_statement"]
+price_history_collection = db["price_history"]
 income_statements = []
 
 for label, content in income_statement.items():
@@ -83,7 +84,7 @@ for label, content in income_statement.items():
     new_content_dict = {}
 
     for key, value in content_dict.items():
-        print(f"{to_snake_case(key)} - {value}")
+        # print(f"{to_snake_case(key)} - {value}")
         new_content_dict[to_snake_case(key)] = value
 
     income_stmt = {
@@ -95,9 +96,46 @@ for label, content in income_statement.items():
     result = income_statement_collection.replace_one(
         {"symbol": ticker_symbol, "timestamp": label}, income_stmt, upsert=True
     )
-    print(result)
+    # print(result)
 
-share_count = ticker.get_shares_full(start="2024-01-01", end=None)
+# share_count = ticker.get_shares_full(start="2024-01-01", end=None)
+
+history = ticker.history(interval="1d", period="1y")
+
+# insert price history to db
+for row in history.itertuples():
+    print(row)
+
+    price_history = {
+        "symbol": ticker_symbol,
+        "interval": "1d",
+        "timestamp": row[0].isoformat(),
+        "open": row[1],
+        "high": row[2],
+        "low": row[3],
+        "close": row[4],
+        "volume": row[5],
+    }
+
+    result = price_history_collection.replace_one(
+        {"symbol": ticker_symbol, "timestamp": row[0].isoformat()},
+        price_history,
+        upsert=True,
+    )
+
+# results = price_history_collection.find_one({"timestamp": "2024-10-15T00:00:00+07:00"})
+
+# print(results)
+
+# for document in results:
+#     print(document)
+# print(document["timestamp"])
+
+# content_dict = content.to_dict()
+# new_content_dict = {}
+
+# print(label)
+# print(content_dict)
 
 # df_json = income_statement.to_json("BMRI.json")
 # df_dict = income_statement.to_dict()
@@ -105,5 +143,6 @@ share_count = ticker.get_shares_full(start="2024-01-01", end=None)
 # json.dumps(df_json)
 # print(df_dict)
 # print(share_count)
+# print(history)
 
 # income_statement_data = {"income_statement": df_json}
