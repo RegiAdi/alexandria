@@ -1,7 +1,10 @@
 import sys
 import yfinance as yf
+
 from re import sub
 from pymongo import MongoClient
+
+import price_history
 
 
 def get_database(dbname):
@@ -63,11 +66,13 @@ def to_snake_case(s):
 
 ticker_symbol = sys.argv[1]
 
-print(ticker_symbol)
+# print(ticker_symbol)
 
 ticker = get_ticker(ticker_symbol)
 # export_to_csv_income_statement(ticker)
 # export_to_csv_balance_sheet(ticker)
+
+print(ticker.ticker)
 
 income_statement = get_income_statement(ticker)
 # print(income_statement.index)
@@ -76,7 +81,7 @@ income_statement = get_income_statement(ticker)
 
 db = get_database("alexandria_db")
 income_statement_collection = db["income_statement"]
-price_history_collection = db["price_history"]
+# price_history_collection = db["price_history"]
 income_statements = []
 
 for label, content in income_statement.items():
@@ -100,28 +105,28 @@ for label, content in income_statement.items():
 
 # share_count = ticker.get_shares_full(start="2024-01-01", end=None)
 
-history = ticker.history(interval="1d", period="1y")
+# history = ticker.history(interval="1d", period="max")
 
-# insert price history to db
-for row in history.itertuples():
-    print(row)
+# # insert price history to db
+# for row in history.itertuples():
+#     print(row)
 
-    price_history = {
-        "symbol": ticker_symbol,
-        "interval": "1d",
-        "timestamp": row[0].isoformat(),
-        "open": row[1],
-        "high": row[2],
-        "low": row[3],
-        "close": row[4],
-        "volume": row[5],
-    }
+#     price_history = {
+#         "symbol": ticker_symbol,
+#         "interval": "1d",
+#         "timestamp": row[0].isoformat(),
+#         "open": row[1],
+#         "high": row[2],
+#         "low": row[3],
+#         "close": row[4],
+#         "volume": row[5],
+#     }
 
-    result = price_history_collection.replace_one(
-        {"symbol": ticker_symbol, "timestamp": row[0].isoformat()},
-        price_history,
-        upsert=True,
-    )
+#     result = price_history_collection.replace_one(
+#         {"symbol": ticker_symbol, "timestamp": row[0].isoformat()},
+#         price_history,
+#         upsert=True,
+#     )
 
 # results = price_history_collection.find_one({"timestamp": "2024-10-15T00:00:00+07:00"})
 
@@ -146,3 +151,9 @@ for row in history.itertuples():
 # print(history)
 
 # income_statement_data = {"income_statement": df_json}
+
+price_history.get_price_history(db, ticker, "1m", "max")
+price_history.get_price_history(db, ticker, "5m", "1mo")
+price_history.get_price_history(db, ticker, "15m", "1mo")
+price_history.get_price_history(db, ticker, "1h", "2y")
+price_history.get_price_history(db, ticker, "1d", "max")
