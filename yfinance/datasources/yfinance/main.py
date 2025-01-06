@@ -1,23 +1,6 @@
 import sys
 import yfinance as yf
-
 from re import sub
-from pymongo import MongoClient
-
-import price_history
-
-
-def get_database(dbname):
-
-    # Provide the mongodb atlas url to connect python to mongodb using pymongo
-    CONNECTION_STRING = "mongodb://localhost:27017/"
-
-    # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
-    client = MongoClient(CONNECTION_STRING)
-
-    # Create the database for our example (we will use the same database throughout the tutorial
-    return client[dbname]
-
 
 def get_ticker(ticker_symbol):
     return yf.Ticker(ticker_symbol)
@@ -70,37 +53,37 @@ ticker_symbol = sys.argv[1]
 
 ticker = get_ticker(ticker_symbol)
 # export_to_csv_income_statement(ticker)
-# export_to_csv_balance_sheet(ticker)
+export_to_csv_balance_sheet(ticker)
 
 print(ticker.ticker)
 
-income_statement = get_income_statement(ticker)
+# income_statement = get_income_statement(ticker)
 # print(income_statement.index)
 # print(income_statement.columns)
 # print(income_statement.T)
 
-db = get_database("alexandria_db")
-income_statement_collection = db["income_statement"]
+# db = get_database("alexandria_db")
+# income_statement_collection = db["income_statement"]
 # price_history_collection = db["price_history"]
-income_statements = []
+# income_statements = []
 
-for label, content in income_statement.items():
-    content_dict = content.to_dict()
-    new_content_dict = {}
-
-    for key, value in content_dict.items():
-        # print(f"{to_snake_case(key)} - {value}")
-        new_content_dict[to_snake_case(key)] = value
-
-    income_stmt = {
-        "symbol": ticker_symbol,
-        "timestamp": label,
-        "data": new_content_dict,
-    }
-
-    result = income_statement_collection.replace_one(
-        {"symbol": ticker_symbol, "timestamp": label}, income_stmt, upsert=True
-    )
+# for label, content in income_statement.items():
+#     content_dict = content.to_dict()
+#     new_content_dict = {}
+#
+#     for key, value in content_dict.items():
+#         # print(f"{to_snake_case(key)} - {value}")
+#         new_content_dict[to_snake_case(key)] = value
+#
+#     income_stmt = {
+#         "symbol": ticker_symbol,
+#         "timestamp": label,
+#         "data": new_content_dict,
+#     }
+#
+#     result = income_statement_collection.replace_one(
+#         {"symbol": ticker_symbol, "timestamp": label}, income_stmt, upsert=True
+#     )
     # print(result)
 
 # share_count = ticker.get_shares_full(start="2024-01-01", end=None)
@@ -151,9 +134,9 @@ for label, content in income_statement.items():
 # print(history)
 
 # income_statement_data = {"income_statement": df_json}
-
-price_history.get_price_history(db, ticker, "1m", "max")
-price_history.get_price_history(db, ticker, "5m", "1mo")
-price_history.get_price_history(db, ticker, "15m", "1mo")
-price_history.get_price_history(db, ticker, "1h", "2y")
-price_history.get_price_history(db, ticker, "1d", "max")
+#
+# price_history.get_price_history(db, ticker, "1m", "max")
+# price_history.get_price_history(db, ticker, "5m", "1mo")
+# price_history.get_price_history(db, ticker, "15m", "1mo")
+# price_history.get_price_history(db, ticker, "1h", "2y")
+# price_history.get_price_history(db, ticker, "1d", "max")
