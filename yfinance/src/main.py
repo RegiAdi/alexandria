@@ -1,21 +1,25 @@
 import sys
 import yfinance as yf
 from re import sub
+import balance_sheet
 
 def get_ticker(ticker_symbol):
     return yf.Ticker(ticker_symbol)
 
 
 def get_balance_sheet(ticker):
-    return ticker.balance_sheet
+    balance_sheet = ticker.get_balance_sheet(as_dict=True, freq='quarterly')
+
+    for key, value in balance_sheet.items():
+        print(f"Key: {key}, Value: {value}")
 
 
 def get_quarterly_balance_sheet(ticker):
     return ticker.quarterly_balance_sheet
 
 
-def get_balance_sheet(ticker):
-    return ticker.balance_sheet
+# def get_balance_sheet(ticker):
+#     return ticker.balance_sheet
 
 
 def get_income_statement(ticker):
@@ -53,9 +57,11 @@ ticker_symbol = sys.argv[1]
 
 ticker = get_ticker(ticker_symbol)
 # export_to_csv_income_statement(ticker)
-export_to_csv_balance_sheet(ticker)
+# export_to_csv_balance_sheet(ticker)
 
 print(ticker.ticker)
+# pprint.pprint(get_balance_sheet(ticker))
+balance_sheet.get_balance_sheet(ticker)
 
 # income_statement = get_income_statement(ticker)
 # print(income_statement.index)
