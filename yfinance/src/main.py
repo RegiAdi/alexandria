@@ -62,6 +62,7 @@ ticker = get_ticker(ticker_symbol)
 print(ticker.ticker)
 # pprint.pprint(get_balance_sheet(ticker))
 balance_sheet.get_balance_sheet(ticker)
+balance_sheet.get_balance_sheet(ticker, freq='yearly')
 
 # income_statement = get_income_statement(ticker)
 # print(income_statement.index)
