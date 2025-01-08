@@ -1,7 +1,9 @@
 import sys
 import yfinance as yf
 from re import sub
+
 import balance_sheet
+from tickers import tickers
 
 def get_ticker(ticker_symbol):
     return yf.Ticker(ticker_symbol)
@@ -51,18 +53,19 @@ def to_snake_case(s):
     ).lower()
 
 
-ticker_symbol = sys.argv[1]
+# ticker_symbol = sys.argv[1]
 
 # print(ticker_symbol)
 
-ticker = get_ticker(ticker_symbol)
-# export_to_csv_income_statement(ticker)
-# export_to_csv_balance_sheet(ticker)
+for symbol, value in tickers.items():
+    print(symbol, value)
+    ticker = get_ticker(symbol)
 
-print(ticker.ticker)
-# pprint.pprint(get_balance_sheet(ticker))
-balance_sheet.get_balance_sheet(ticker)
-balance_sheet.get_balance_sheet(ticker, freq='yearly')
+    print(ticker.ticker)
+
+    for freq in value["balance_sheet"]["freq"]:
+        print(freq)
+        balance_sheet.get_balance_sheet(ticker, freq=freq)
 
 # income_statement = get_income_statement(ticker)
 # print(income_statement.index)
