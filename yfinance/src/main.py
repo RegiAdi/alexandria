@@ -1,4 +1,3 @@
-import sys
 import yfinance as yf
 from re import sub
 
@@ -18,10 +17,6 @@ def get_balance_sheet(ticker):
 
 def get_quarterly_balance_sheet(ticker):
     return ticker.quarterly_balance_sheet
-
-
-# def get_balance_sheet(ticker):
-#     return ticker.balance_sheet
 
 
 def get_income_statement(ticker):
@@ -52,10 +47,6 @@ def to_snake_case(s):
         ).split()
     ).lower()
 
-
-# ticker_symbol = sys.argv[1]
-
-# print(ticker_symbol)
 
 for symbol, value in tickers.items():
     print(symbol, value)
