@@ -5,7 +5,7 @@ from ulid import ULID
 
 def get_balance_sheet(ticker, freq="quarterly"):
     try:
-        db = sqlite3.connect("src/database/yfinance.db")
+        db = sqlite3.connect("database/alexandria.db")
         print("Opened database successfully")
         cursor = db.cursor()
 
