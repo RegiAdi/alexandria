@@ -13,12 +13,13 @@ import {
   Settings2,
   SquareTerminal,
   LayoutDashboard,
+  ChartCandlestick
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { TickerSwitcher } from "@/components/ticker-switcher"
 import {
   Sidebar,
   SidebarContent,
@@ -34,23 +35,29 @@ const data = {
     email: "hello@alexandria.com",
     avatar: "https://github.com/shadcn.png",
   },
-  teams: [
+  tickers: [
     {
-      name: "Alexandria",
+      name: "ADRO",
+      symbol: "ADRO.JK",
+      companyName: "PT Alamtri Resources Indonesia Tbk",
+      logo: ChartCandlestick,
+      plan: "Enterprise",
+    },
+    {
+      name: "BBCA",
+      symbol: "BBCA.JK",
+      companyName: "PT Bank Central Asia Tbk",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
     {
-      name: "Acme Corp.",
+      name: "PTBA",
+      symbol: "PTBA.JK",
+      companyName: "PT Bukit Asam Tbk",
       logo: AudioWaveform,
       plan: "Startup",
     },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
+      ],
   navMain: [
     {
       title: "Dashboard",
@@ -170,11 +177,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <NavUser user={data.user} />
+        <TickerSwitcher tickers={data.tickers} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
+      <SidebarFooter>
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )
