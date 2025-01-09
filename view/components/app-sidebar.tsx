@@ -12,6 +12,7 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
+  LayoutDashboard,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -29,13 +30,13 @@ import {
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "alexandria",
+    email: "hello@alexandria.com",
     avatar: "https://github.com/shadcn.png",
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Alexandria",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
@@ -51,6 +52,14 @@ const data = {
     },
   ],
   navMain: [
+    {
+      title: "Dashboard",
+      url: "dashboard",
+      icon: LayoutDashboard,
+      isActive: true,
+      items: [
+      ],
+    },
     {
       title: "Playground",
       url: "#",
@@ -160,15 +169,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <NavUser user={data.user} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )
