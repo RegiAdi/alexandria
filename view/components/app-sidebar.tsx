@@ -3,17 +3,16 @@
 import * as React from "react"
 import {
   AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
   LayoutDashboard,
-  ChartCandlestick
+  ChartCandlestick,
+  HandCoins,
+  ChartNoAxesCombined,
+  CircleDollarSign,
+  Building2,
+  Bitcoin,
+  Flame,
+  Star
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -32,7 +31,7 @@ import {
 const data = {
   user: {
     name: "alexandria",
-    email: "hello@alexandria.com",
+    email: "hello@alexandria.ventari.id",
     avatar: "https://github.com/shadcn.png",
   },
   tickers: [
@@ -68,29 +67,29 @@ const data = {
       ],
     },
     {
-      title: "Playground",
+      title: "Financial",
       url: "#",
-      icon: SquareTerminal,
+      icon: CircleDollarSign,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Income Statement",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Balance Sheet",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Cash Flow",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Analysis",
       url: "#",
-      icon: Bot,
+      icon: ChartNoAxesCombined,
       items: [
         {
           title: "Genesis",
@@ -107,9 +106,9 @@ const data = {
       ],
     },
     {
-      title: "Documentation",
+      title: "Dividend",
       url: "#",
-      icon: BookOpen,
+      icon: HandCoins,
       items: [
         {
           title: "Introduction",
@@ -130,9 +129,9 @@ const data = {
       ],
     },
     {
-      title: "Settings",
+      title: "Profile",
       url: "#",
-      icon: Settings2,
+      icon: Building2,
       items: [
         {
           title: "General",
@@ -155,19 +154,19 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Coins",
       url: "#",
-      icon: Frame,
+      icon: Bitcoin,
     },
     {
-      name: "Sales & Marketing",
+      name: "Trending",
       url: "#",
-      icon: PieChart,
+      icon: Flame,
     },
     {
-      name: "Travel",
+      name: "Top Stories",
       url: "#",
-      icon: Map,
+      icon: Star,
     },
   ],
 }

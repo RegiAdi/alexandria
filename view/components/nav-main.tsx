@@ -44,7 +44,7 @@ export function NavMain({
   return (
     <>
       <SidebarGroup>
-        <SidebarGroupLabel>Platform</SidebarGroupLabel>
+        <SidebarGroupLabel>Stocks</SidebarGroupLabel>
         <SidebarMenu>
           { items.map((item) => {
             if (item.items?.length) {
