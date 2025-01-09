@@ -32,7 +32,7 @@ const data = {
   user: {
     name: "alexandria",
     email: "hello@alexandria.ventari.id",
-    avatar: "https://github.com/shadcn.png",
+    avatar: "assets/avatars/avatar2.jpeg",
   },
   tickers: [
     {
