@@ -13,7 +13,8 @@ import {
   Building2,
   Bitcoin,
   Flame,
-  Star
+  Star,
+  ChartPie
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -68,22 +69,22 @@ const data = {
       ],
     },
     {
-      title: "Financials",
-      url: "/financials",
+      title: "Financial",
+      url: "/financial",
       icon: CircleDollarSign,
       isActive: false,
       items: [
         {
           title: "Income Statement",
-          url: "/financials/income-statement",
+          url: "/financial/income-statement",
         },
         {
           title: "Balance Sheet",
-          url: "/financials/balance-sheet",
+          url: "/financial/balance-sheet",
         },
         {
           title: "Cash Flow",
-          url: "/financials/cash-flow",
+          url: "/financial/cash-flow",
         },
       ],
     },
@@ -105,6 +106,14 @@ const data = {
           title: "Quantum",
           url: "#",
         },
+      ],
+    },
+    {
+      title: "Portfolio",
+      url: "/portfolio",
+      icon: ChartPie,
+      isActive: false,
+      items: [
       ],
     },
     {
