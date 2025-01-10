@@ -2,6 +2,7 @@ import yfinance as yf
 from re import sub
 
 import balance_sheet
+import ticker_info
 from tickers import tickers
 
 def get_ticker(ticker_symbol):
@@ -51,12 +52,17 @@ def to_snake_case(s):
 for symbol, value in tickers.items():
     print(symbol, value)
     ticker = get_ticker(symbol)
+    
+    # get ticker info
+    ticker_info.get_info(ticker)
 
     print(ticker.ticker)
 
     for freq in value["balance_sheet"]["freq"]:
         print(freq)
         balance_sheet.get_balance_sheet(ticker, freq=freq)
+
+
 
 # income_statement = get_income_statement(ticker)
 # print(income_statement.index)
