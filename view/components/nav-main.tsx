@@ -1,6 +1,7 @@
 "use client"
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import {
   ChevronRight
@@ -41,6 +42,8 @@ export function NavMain({
     }[]
   }[]
 }) {
+  const pathname = usePathname()
+
   return (
     <>
       <SidebarGroup>
@@ -82,7 +85,7 @@ export function NavMain({
             } else {
               return (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton tooltip={item.title}>
+                  <SidebarMenuButton tooltip={item.title} isActive={pathname === item.url}>
                     {item.icon && <item.icon />}
                     <Link href={item.url}>
                       <span>{item.title}</span>

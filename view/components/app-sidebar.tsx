@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+
 import {
   AudioWaveform,
   GalleryVerticalEnd,
@@ -60,29 +61,29 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "dashboard",
+      url: "/dashboard",
       icon: LayoutDashboard,
-      isActive: true,
+      isActive: false,
       items: [
       ],
     },
     {
-      title: "Financial",
-      url: "#",
+      title: "Financials",
+      url: "/financials",
       icon: CircleDollarSign,
-      isActive: true,
+      isActive: false,
       items: [
         {
           title: "Income Statement",
-          url: "#",
+          url: "/financials/income-statement",
         },
         {
           title: "Balance Sheet",
-          url: "#",
+          url: "/financials/balance-sheet",
         },
         {
           title: "Cash Flow",
-          url: "#",
+          url: "/financials/cash-flow",
         },
       ],
     },
@@ -90,6 +91,7 @@ const data = {
       title: "Analysis",
       url: "#",
       icon: ChartNoAxesCombined,
+      isActive: false,
       items: [
         {
           title: "Genesis",
@@ -109,6 +111,7 @@ const data = {
       title: "Dividend",
       url: "#",
       icon: HandCoins,
+      isActive: false,
       items: [
         {
           title: "Introduction",
@@ -132,6 +135,7 @@ const data = {
       title: "Profile",
       url: "#",
       icon: Building2,
+      isActive: false,
       items: [
         {
           title: "General",
