@@ -2,6 +2,7 @@ import yfinance as yf
 from re import sub
 
 import balance_sheet
+import income_statement
 import ticker_info
 from tickers import tickers
 
@@ -61,6 +62,10 @@ for symbol, value in tickers.items():
     for freq in value["balance_sheet"]["freq"]:
         print(freq)
         balance_sheet.get_balance_sheet(ticker, freq=freq)
+
+    for freq in value["income_statement"]["freq"]:
+        print(freq)
+        income_statement.get_income_statement(ticker, freq=freq)
 
 
 
