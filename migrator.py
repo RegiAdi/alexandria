@@ -1,7 +1,7 @@
-import database.create_balance_sheet_table
-import database.create_income_statement_table
+import database.create_balance_sheets_table
+import database.create_income_statements_table
 import database.create_ticker_info_table
 
-database.create_balance_sheet_table.run()
-database.create_income_statement_table.run()
+database.create_balance_sheets_table.run()
+database.create_income_statements_table.run()
 database.create_ticker_info_table.run()

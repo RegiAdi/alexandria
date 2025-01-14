@@ -7,7 +7,7 @@ def run():
         cursor = db.cursor()
 
         cursor.execute("""
-            create table if not exists income_statement (
+            create table if not exists income_statements (
                 id blob primary key, 
                 symbol text not null,
                 data text,
