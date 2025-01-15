@@ -4,6 +4,7 @@ from re import sub
 import balance_sheet
 import income_statement
 import ticker_info
+import dividend
 from tickers import tickers
 
 def get_ticker(ticker_symbol):
@@ -56,6 +57,9 @@ for symbol, value in tickers.items():
     
     # get ticker info
     ticker_info.get_info(ticker)
+
+    # get dividends
+    dividend.get_dividends(ticker) 
 
     print(ticker.ticker)
 
