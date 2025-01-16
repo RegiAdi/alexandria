@@ -31,4 +31,12 @@ tickers = {
             "freq": ['yearly', 'quarterly']
         }
     },
+    "SMSM.JK": {
+        "balance_sheet": {
+            "freq": ['yearly', 'quarterly']
+        },
+        "income_statement": {
+            "freq": ['yearly', 'quarterly']
+        }
+    },
 }
