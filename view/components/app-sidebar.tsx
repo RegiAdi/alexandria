@@ -14,7 +14,8 @@ import {
   Bitcoin,
   Flame,
   Star,
-  ChartPie
+  ChartPie,
+  Wrench
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -160,6 +161,22 @@ const data = {
         },
         {
           title: "Limits",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Tools",
+      url: "#",
+      icon: Wrench,
+      isActive: false,
+      items: [
+        {
+          title: "Average Calculator",
+          url: "#",
+        },
+        {
+          title: "Dividend Calculator",
           url: "#",
         },
       ],
